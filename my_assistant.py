@@ -1,0 +1,51 @@
+# my_assistant.py
+# Mini-Project: Coastal Coffee Assistant
+
+
+class CoffeeAssistant:
+    """A customer service assistant for Coastal Coffee."""
+
+    def __init__(self, name, faq_tool):
+        # Save the assistant's name.
+        self.name = name
+
+        # Store the FAQ lookup tool.
+        self.faq_tool = faq_tool
+
+        # Create an empty conversation history.
+        self.history = []
+
+    def respond(self, user_message):
+        """Respond to a customer and save the conversation."""
+
+        # Save the customer's message.
+        self.history.append({"role": "user", "content": user_message})
+
+        # Generate a response using another method.
+        reply = self.choose_reply(user_message)
+
+        # Save the assistant's response.
+        self.history.append({"role": "assistant", "content": reply})
+
+        # Return the response to the customer.
+        return reply
+
+    def choose_reply(self, user_message):
+        """Choose the correct response for a customer."""
+
+        # Convert the customer's message to lowercase.
+        text = user_message.lower()
+
+        # Send sensitive requests to a human employee.
+        if "refund" in text or "payment" in text:
+            return "Please speak with a human employee for help with that request."
+
+        # Look for an answer using the FAQ tool.
+        answer = self.faq_tool.find_answer(user_message)
+
+        # Return the answer if one is found.
+        if answer is not None:
+            return answer
+
+        # Respond safely when the question is unknown.
+        return "I'm sorry, I don't have that information. Please contact our staff."
