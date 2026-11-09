@@ -1,4 +1,3 @@
-
 # no_memory.py
 
 from ollama import chat

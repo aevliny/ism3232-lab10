@@ -1,4 +1,3 @@
-
 # first_chat.py
 
 from ollama import chat

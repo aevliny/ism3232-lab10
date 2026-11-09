@@ -1,4 +1,3 @@
-
 # with_memory.py
 
 from ollama import chat
